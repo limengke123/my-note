@@ -1,0 +1,2 @@
+# my-note
+note life 
