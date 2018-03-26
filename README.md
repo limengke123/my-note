@@ -1,2 +1,3 @@
 # my-note
-note life 
+
+note life
