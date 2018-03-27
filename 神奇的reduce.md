@@ -37,7 +37,7 @@ arr.reduce(callback[,initalValue])
 
 函数累计处理的结果
 
-### 描述
+## 描述
 
 `reduce`为数组中的每一个元素依次执行`callback`函数，不包括数组中被删除或从未被赋值的元素，接受四个参数。
 
@@ -61,6 +61,79 @@ var maxCallback2 = ( max, cur ) => Math.max( max, cur );
 // map/reduce; better solution, also works for empty arrays
 [ { x: 22 }, { x: 42 } ].map( el => el.x )
                         .reduce( maxCallback2, -Infinity );
+```
+
+### reduce如何运行
+
+假如运行下段代码：
+
+```js
+[0, 1, 2, 3, 4].reduce(function(accumulator, currentValue, currentIndex, array){
+  return accumulator + currentValue;
+});
+```
+
+| callback    | accumulator | currentValue | currentIndex | array           | return value |
+| ----------- | ----------- | ------------ | ------------ | --------------- | ------------ |
+| first call  | 0           | 1            | 1            | [0, 1, 2, 3, 4] | 1            |
+| second call | 1           | 2            | 2            | [0, 1, 2, 3, 4] | 3            |
+| third call  | 3           | 3            | 3            | [0, 1, 2, 3, 4] | 6            |
+| fourth call | 6           | 4            | 4            | [0, 1, 2, 3, 4] | 10           |
+由`reduce`返回的值将是上次回调调用的值`（10）`。
+
+你同样可以使用箭头函数的形式，下面的代码会输出跟前面一样的结果
+
+您还可以提供[Arrow Function](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/Arrow_functions) 代替完整功能。 下面的代码将产生与上面的代码中相同的输出：
+
+```js
+[0, 1, 2, 3, 4].reduce((prev, curr) => prev + curr );
+```
+
+如果你打算提供一个初始值作为`reduce`方法的第二个参数，以下是运行过程及结果：
+
+```js
+[0, 1, 2, 3, 4].reduce((accumulator, currentValue, currentIndex, array) => { return accumulator + currentValue; }, 10 )
+```
+
+| callback    | accumulator | currentValue | currentIndex | array           | return value |
+| ----------- | ----------- | ------------ | ------------ | --------------- | ------------ |
+| first call  | 10          | 0            | 0            | [0, 1, 2, 3, 4] | 10           |
+| second call | 10          | 1            | 1            | [0, 1, 2, 3, 4] | 11           |
+| third call  | 11          | 2            | 2            | [0, 1, 2, 3, 4] | 13           |
+| fourth call | 13          | 3            | 3            | [0, 1, 2, 3, 4] | 16           |
+| fourth call | 16          | 4            | 4            | [0, 1, 2, 3, 4] | 20           |
+这种情况下reduce返回的值是`20`。
+
+## 例子
+
+数组里所有值的和
+
+```js
+var sum = [0, 1, 2, 3].reduce(function (a, b) {
+  return a + b;
+}, 0);
+// sum is 6
+```
+
+你也可以写成箭头函数的形式：
+
+```js
+var total = [ 0, 1, 2, 3 ].reduce(
+  ( acc, cur ) => acc + cur,
+  0
+);
+```
+
+### 将二维数组转化为一维
+
+```js
+var flattened = [[0, 1], [2, 3], [4, 5]].reduce(
+  function(a, b) {
+    return a.concat(b);
+  },
+  []
+);
+// flattened is [0, 1, 2, 3, 4, 5]
 ```
 
 [参考链接](https://segmentfault.com/a/1190000013972464?utm_source=feed-content)
