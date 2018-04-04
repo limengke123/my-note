@@ -335,6 +335,53 @@ var vm = new Vue({
 </keep-alive>
 ```
 
+### 自定义指令
+
+> 有的情况下，你仍然需要对**普通 `DOM` 元素**进行底层操作，这时候就会用到自定义指令
+
+官网的这个例子很好,组件在加载完自动focus：
+
+```js
+// 注册一个全局自定义指令 `v-focus`
+Vue.directive('focus', {
+  // 当被绑定的元素插入到 DOM 中时……
+  inserted: function (el) {
+    // 聚焦元素
+    el.focus()
+  }
+})
+```
+
+```js
+//调用
+  <input v-focus>
+```
+
+几个钩子函数：
+
+1. bind 只调用一次，指令第一次绑定到元素时调用。在这里可以进行一次性的初始化设置。
+2. inserted 被绑定元素插入父节点时调用 (仅保证父节点存在，但不一定已被插入文档中)。
+3. update 所在组件的 VNode 更新时调用，但是可能发生在其子 VNode 更新之前。指令的值可能发生了改变，也可能没有。但是你可以通过比较更新前后的值来忽略不必要的模板更新。
+4. componentUpdated 指令所在组件的 VNode 及其子 VNode 全部更新后调用。
+5. unbind 只调用一次，指令与元素解绑时调用。
+
+钩子函数的参数：
+
+* el  指令所绑定的元素，可以用来直接操作 DOM
+* binding
+  * name 指令名，不包括 `v-` 前缀。
+  * value 指令的绑定值
+  * oldValue 指令绑定的前一个值，仅在 `update` 和 `componentUpdated` 钩子中可用。无论值是否改变都可用。
+  * expression 字符串形式的指令表达式。
+  * arg 传给指令的参数，可选。
+  * modifiers 一个包含修饰符的对象。
+* vnode Vue 编译生成的虚拟节点。
+* oldVnode 上一个虚拟节点，仅在 `update` 和 `componentUpdated` 钩子中可用。
+
+比较重要的也就`el`和`binding`，用`binding`里的`value`可以给`el`用。
+
+> 除了 `el` 之外，其它参数都应该是只读的，切勿进行修改。如果需要在钩子之间共享数据，建议通过元素的 `dataset` 来进行。
+
 参考资料：
 
 1. [element UI](https://github.com/ElemeFE/element)
