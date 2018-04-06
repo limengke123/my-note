@@ -389,7 +389,7 @@ Vue.directive('focus', {
 
 2018/4/6：
 
-最近看了一些别人组件一些用法，感觉学的`vue`还是比较皮毛的，有空再写一篇`vue`的较为高级用法。
+最近看了一些别人组件一些用法，感觉学的`vue`还是比较皮毛的，有空再写一篇`vue`的较为高级用法。先留一个坑[《细看vue组件》](https://github.com/limengke123/my-note/blob/master/%E5%89%8D%E7%AB%AF/vue%E8%BE%83%E5%B0%91%E5%85%B3%E6%B3%A8%E7%9A%84%E5%9C%B0%E6%96%B9.md)
 
 ---
 
