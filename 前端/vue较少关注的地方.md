@@ -399,6 +399,8 @@ Vue.directive('focus', {
 
 2. [vant](https://github.com/youzan/vant)
 
+3. [vue组件思考](https://nlush.com/blog/2017/10/14/VUE-%E7%BB%84%E4%BB%B6%E7%9A%84%E4%B8%80%E7%82%B9%E6%80%9D%E8%80%83/)
+
 我的相关项目：
 
 * [fantastic-carnival](https://github.com/limengke123/fantastic-carnival) 一个前后端都有的博客
