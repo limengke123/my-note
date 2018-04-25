@@ -163,6 +163,9 @@ function cached (fn) {
 
 /**
  * Camelize a hyphen-delimited string.
+ * 2018/4/23阅
+ * 驼峰化
+ * ta-ki   -->   taKi
  */
 var camelizeRE = /-(\w)/g;
 var camelize = cached(function (str) {
@@ -171,6 +174,7 @@ var camelize = cached(function (str) {
 
 /**
  * Capitalize a string.
+ * 首字母大写
  */
 var capitalize = cached(function (str) {
   return str.charAt(0).toUpperCase() + str.slice(1)
@@ -178,6 +182,7 @@ var capitalize = cached(function (str) {
 
 /**
  * Hyphenate a camelCase string.
+ * 变成破折号形式，并且都小写
  */
 var hyphenateRE = /\B([A-Z])/g;
 var hyphenate = cached(function (str) {
