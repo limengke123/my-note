@@ -19,3 +19,7 @@
 ## 生活随笔
 
 [https://github.com/limengke123/my-note/tree/master/%E7%94%9F%E6%B4%BB](https://github.com/limengke123/my-note/tree/master/%E7%94%9F%E6%B4%BB)
+
+## 相关
+
+[segementFault](https://segmentfault.com/u/limengke)
