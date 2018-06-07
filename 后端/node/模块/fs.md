@@ -12,3 +12,5 @@
 * callback：参数为 (err, written, buffer)。written表示有xx字节的buffer被写入。
 
 > 备注：fs.write(fd, buffer, offset, length[, position], callback)跟fs.write(fd, data[, position[, encoding]], callback)的区别在于：后面的只能把所有的data写入，而前面的可以写入指定的data子串？
+
+## 文件读取
