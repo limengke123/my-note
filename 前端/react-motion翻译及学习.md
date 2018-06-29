@@ -38,7 +38,7 @@ Exports:
 
 一般的动画组件
 
-### 用法：
+### `<Motion/>` 用法
 
 ```jsx
 /**
@@ -50,7 +50,7 @@ Exports:
 </Motion>
 ```
 
-### 属性(props)
+### `<Motion/>` 属性(props)
 
 -style: Style
 
@@ -78,4 +78,48 @@ Exports:
 
 交错的动画组件。
 
-创建一个彼此之间依赖的集合（固定长度）的动画，
+创建一个彼此之间依赖的集合（固定长度）的动画，达到*自然*、*弹性*、*惊人*的效果。这比对一系列运动硬编码延迟的方式（不太自然的动画效果）更加有效。
+
+### `<StaggeredMotion/>` 用法
+
+```jsx
+<StaggeredMotion
+  defaultStyles={[{h: 0}, {h: 0}, {h: 0}]}
+  styles={prevInterpolatedStyles => prevInterpolatedStyles.map((_, i) => {
+    return i === 0
+      ? {h: spring(100)}
+      : {h: spring(prevInterpolatedStyles[i - 1].h)}
+  })}>
+  {interpolatingStyles =>
+    <div>
+      {interpolatingStyles.map((style, i) =>
+        <div key={i} style={{border: '1px solid', height: style.h}} />)
+      }
+    </div>
+  }
+</StaggeredMotion>
+```
+
+### `<StaggeredMotion/>` 属性(props)
+
+-styles:(previousInterpolatedStyles: ?Array<PlainStyle>) => Array<style>
+
+必须,函数。**不要忘记`"s"`**
+
+* `previousInterpolatedStyles` 前一个插入值的 `styles` ,(第一次渲染的时候是 `undefined` ,除非提供了 `defaultStyles`)
+
+* Return 一定要返回包含*目的值*的 `styles` 数组,举个例子:[{x: spring(10), x: spring(20)}]
+
+-defaultStyles?: Array<PlainStyle>
+
+可选。和 `Motion` 的 `defaultStyle` 类似，但是是一个数组。
+
+-children: (interpolatedStyles: Array<PlainStyle>) => ReactElement
+
+必须，函数。和 `Motion` 的 `children` 类似, 但是接受一个插入值的数组作为函数的参数。举个例子：`[{x: 5}, {x: 6.4}, {x: 8.1}]`。
+
+(没有 `noRest`, 我们没有发现有什么意义在 `StaggeredMotion` 中加入 `noReset`)
+
+## `<TransitionMotion>`
+
+帮助你创建 `mounting` 和 `unmounting` 时的动画。
