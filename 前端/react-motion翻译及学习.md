@@ -123,3 +123,7 @@ Exports:
 ## `<TransitionMotion>`
 
 帮助你创建 `mounting` 和 `unmounting` 时的动画。
+
+### `<TransitionMotion>` 用法
+
+有 `a`、`b`、`c` 三个项目，有各自的 `style` 配置，
