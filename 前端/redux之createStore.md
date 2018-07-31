@@ -304,6 +304,10 @@ function dispatch(action) {
 
 注意到另外一点，在 `dispatch` 函数的最后遍历 `listeners` 的时候，是这样操作的： `const listeners = (currentListeners = nextListeners)`，这里 `nextListeners` 和 `currentListeners` 就相同了。
 
+那么为啥内部需要有 `currentListeners` 和 `nextListeners`，主要是**通知订阅者的过程中发生了其他的订阅(`subscribe`)和退订(`unsubscribe`),那肯定会发生错误或者不确定性。**
+
+这里有[一篇文章](https://segmentfault.com/a/1190000010263353)论述到这个问题。
+
 #### getState
 
 简单的把 `store` 的 `currentState` 返回出来。
