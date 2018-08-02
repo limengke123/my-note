@@ -9,3 +9,5 @@
 7. [一次面试记录]() 2018/6/6
 8. [react-motion文档翻译以及学习](https://github.com/limengke123/my-note/blob/master/%E5%89%8D%E7%AB%AF/react-motion%E7%BF%BB%E8%AF%91%E5%8F%8A%E5%AD%A6%E4%B9%A0.md)
 9. 前端部署nginx配置 2018/7/18
+10. redux之compose
+11. redux之createStore
